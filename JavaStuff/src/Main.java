@@ -1,18 +1,40 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
+
+        System.out.println("Prime Factors\n");
+        main.primeFactorRunner();
+
+        System.out.println("Partner Swap\n");
         main.partnerSwapRunner();
+
+        System.out.println("Student Average\n");
+        main.studentAverageRunner();
+
+        System.out.println("Sum Pair\n");
+        main.sumPairRunner();
+    }
+
+    private void primeFactorRunner() {
+        PrimeFactor primeFactor = new PrimeFactor(7);
+        System.out.println("7: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(30);
+        System.out.println("30: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(285);
+        System.out.println("285: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(770);
+        System.out.println("770: " + primeFactor.getPrimeFactors().toString() + "\n");
     }
 
     private void partnerSwapRunner() {
-        PartnerSwap partnerSwap = new PartnerSwap();
-
-        List<String> row = new ArrayList<String>();
+        List<String> row = new ArrayList<>();
         row.add("A");
         row.add("B");
         row.add("C");
@@ -40,41 +62,64 @@ public class Main {
         row.add("Y");
         row.add("Z");
 
-        HashMap<String, Integer> rowMap = new HashMap<String, Integer>();
-        for (int i = 0; i < row.size(); i++) {
-            rowMap.put(row.get(i), i);
-        }
+        String[][] partners = {
+                {"O", "B"},
+                {"Y", "V"},
+                {"Z", "W"},
+                {"K", "Q"},
+                {"R", "P"},
+                {"T", "E"},
+                {"D", "N"},
+                {"L", "S"},
+                {"F", "G"},
+                {"M", "A"},
+                {"I", "X"},
+                {"H", "C"},
+                {"J", "U"}
+        };
+
+        PartnerSwap partnerSwap = new PartnerSwap(row, partners);
 
         System.out.println(row.toString() + "\n");
 
-        String[][] pairs = {{ "O", "B" },
-                            { "Y", "V" },
-                            { "Z", "W" },
-                            { "K", "Q" },
-                            { "R", "P" },
-                            { "T", "E" },
-                            { "D", "N" },
-                            { "L", "S" },
-                            { "F", "G" },
-                            { "M", "A" },
-                            { "I", "X" },
-                            { "H", "C" },
-                            { "J", "U" }};
-
-        HashMap<String, String> pairMap = new HashMap<String, String>();
-        HashMap<String, String> pairMapInverse = new HashMap<String, String>();
-        for (String[] pairItem : pairs) {
-            pairMap.put(pairItem[0], pairItem[1]);
-            pairMapInverse.put(pairItem[1], pairItem[0]);
-        }
-
-        System.out.println("Partners List:");
-        for (String[] pairItem : pairs) {
-            System.out.print("{" + pairItem[0] + ", " + pairItem[1] + "}\n");
+        for (String[] partnerItem : partners) {
+            System.out.print("{" + partnerItem[0] + ", " + partnerItem[1] + "}\n");
         }
         System.out.println();
 
-        System.out.println(partnerSwap.rearrange(row, rowMap, pairMap, pairMapInverse).toString());
+        System.out.println(partnerSwap.rearrange().toString() + "\n");
+    }
+
+    private void studentAverageRunner() {
+        String[][] scores = {
+                {"Jerry", "90"},
+                {"Bob", "91"},
+                {"Jerry", "100"},
+                {"Eric", "83"}
+        };
+
+        StudentAverage studentAverage = new StudentAverage(scores);
+
+        System.out.println("Best Student: " + studentAverage.getBestStudent());
+        System.out.println("Best Average: " + studentAverage.getBestAverage() + "\n");
+    }
+
+    private void sumPairRunner() {
+        int sum = 220;
+
+        List<Integer> numberList = new ArrayList<>();
+        numberList.add(100);
+        numberList.add(180);
+        numberList.add(40);
+        numberList.add(120);
+        numberList.add(10);
+
+        SumPair sumPair = new SumPair(sum, numberList);
+        int[] result = sumPair.getSumPair();
+
+        System.out.println("Sum: " + sum);
+        System.out.println("List: " + numberList.toString());
+        System.out.println("Pair: [" + result[0] + ", " + result[1] + "]\n");
     }
 
 }
