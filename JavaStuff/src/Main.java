@@ -4,7 +4,12 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("c".compareTo("a"));
+
         Main main = new Main();
+
+        System.out.println("Movie Interest\n");
+        main.movieInterestRunner();
 
         System.out.println("Prime Factors\n");
         main.primeFactorRunner();
@@ -17,20 +22,25 @@ public class Main {
 
         System.out.println("Sum Pair\n");
         main.sumPairRunner();
+
+        System.out.println("Weekly Pay\n");
+        main.weeklyPayRunner();
     }
 
-    private void primeFactorRunner() {
-        PrimeFactor primeFactor = new PrimeFactor(7);
-        System.out.println("7: " + primeFactor.getPrimeFactors().toString());
+    private void movieInterestRunner() {
+        MovieInterest movieInterest = new MovieInterest();
 
-        primeFactor = new PrimeFactor(30);
-        System.out.println("30: " + primeFactor.getPrimeFactors().toString());
+        String response = movieInterest.movieTime(3.75, 3);
+        System.out.println("movieTime ( 3.75, 3 ) returns \"" + response + "\"");
 
-        primeFactor = new PrimeFactor(285);
-        System.out.println("285: " + primeFactor.getPrimeFactors().toString());
+        response = movieInterest.movieTime(13.00, 5);
+        System.out.println("movieTime (13.00, 5 ) returns \"" + response + "\"");
 
-        primeFactor = new PrimeFactor(770);
-        System.out.println("770: " + primeFactor.getPrimeFactors().toString() + "\n");
+        response = movieInterest.movieTime(9.00, 4);
+        System.out.println("movieTime ( 9.00, 4 ) returns \"" + response + "\"");
+
+        response = movieInterest.movieTime(8.00, 5);
+        System.out.println("movieTime ( 8.00, 5 ) returns \"" + response + "\"\n");
     }
 
     private void partnerSwapRunner() {
@@ -90,6 +100,20 @@ public class Main {
         System.out.println(partnerSwap.rearrange().toString() + "\n");
     }
 
+    private void primeFactorRunner() {
+        PrimeFactor primeFactor = new PrimeFactor(7);
+        System.out.println("7: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(30);
+        System.out.println("30: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(285);
+        System.out.println("285: " + primeFactor.getPrimeFactors().toString());
+
+        primeFactor = new PrimeFactor(770);
+        System.out.println("770: " + primeFactor.getPrimeFactors().toString() + "\n");
+    }
+
     private void studentAverageRunner() {
         String[][] scores = {
                 {"Jerry", "90"},
@@ -120,6 +144,14 @@ public class Main {
         System.out.println("Sum: " + sum);
         System.out.println("List: " + numberList.toString());
         System.out.println("Pair: [" + result[0] + ", " + result[1] + "]\n");
+    }
+
+    private void weeklyPayRunner() {
+        WeeklyPay weeklyPay = new WeeklyPay();
+
+        System.out.println("calculatePay (20, 15) returns " + weeklyPay.calculatePay(20, 15));
+        System.out.println("calculatePay (50, 10) returns " + weeklyPay.calculatePay(50, 10));
+        System.out.println("calculatePay (50, 25) returns " + weeklyPay.calculatePay(50, 25));
     }
 
 }
